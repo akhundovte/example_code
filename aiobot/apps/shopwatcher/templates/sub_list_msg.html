@@ -1,0 +1,9 @@
+<b>Список Ваших подписок (всего {{page.all_count}}):</b>
+
+{% with start_idx = page.start_index() %}
+{% for sub in page -%}
+  <b>{{loop.index0 + start_idx}}.</b> {% include "sub_msg.html" %}
+<b>Изменить подписку</b> /sub_{{sub.id}}
+
+{% endfor %}
+{% endwith %}

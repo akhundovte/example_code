@@ -1,0 +1,43 @@
+<b><a href="{{product_url}}">{{product_name}}</a></b>
+магазин: {{shop_label}}, артикул: {{product_reference}}
+
+{% for block_item in data_msg %}
+  {% if 'name' in block_item %}{% if type_label %}{{type_label}}{% else %}тип{% endif %}: <a href="{{block_item.url}}">{{block_item.name}}</a>
+  {% endif %}
+  {% for item in block_item.data %}
+    {% if item.option %}{% if option_label %}{{option_label}}{% else %}опция{% endif %}: <b>{{item.option}}</b>
+    {% endif %}
+    {% if 'price' in item.change %}
+      {% for price_type, price_data in item.change.price.items() %}
+        {% if price_data.diff is not none %}
+          {% if price_data.diff > 0 %}уменьшение{% else %}увеличение{% endif %}
+          {% if price_type == 'sale' %} цены продажи
+          {%- elif price_type == 'base' %} базовой цены
+          {%- elif price_type == 'card' %} цены по карте
+          {%- endif %} на <b>{{ price_data.diff|abs|numcomma }}%</b>
+c <b>{{ price_data.old|numcomma }} р.</b> до <b>{{ price_data.new|numcomma }} р.</b>
+        {% else %}
+          {% if price_data.old is none and price_data.new is not none %}
+            {% if price_type == 'sale' %}цена продажи
+            {%- elif price_type == 'base' %}базовая цена
+            {%- elif price_type == 'card' %}цена по карте
+            {%- endif %}
+ <b>{{ price_data.new|numcomma }} р.</b> появилась на сайте
+          {% elif price_data.new is none and price_data.old is not none %}
+            {% if price_type == 'sale' %}цена продажи
+            {%- elif price_type == 'base' %}базовая цена
+            {%- elif price_type == 'card' %}цена по карте
+            {%- endif %}
+ <b>{{ price_data.old|numcomma }} р.</b> была убрана с сайта
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% elif 'available' in item.change -%}
+      <b>стал доступен для покупки</b>
+    {% endif %}
+    {% if item.discount -%}
+      скидка указанная на сайте {{item.discount}}%
+    {% endif %}
+  {% endfor %}
+
+{% endfor %}

@@ -1,0 +1,11 @@
+<b><a href="{{sub.product_url}}">{{sub.product_name}}</a></b>
+магазин: <b>{{sub.shop_label}}</b>, артикул: <b>{{sub.product_reference}}</b>
+{% for selected_item in sub.selected -%}
+  {% if 'type_url' in selected_item -%}
+    выбранный тип: <a href="{{selected_item.type_url}}">{{selected_item.type_name}}</a>
+  {% endif %}
+  {% if selected_item.options -%}
+    параметры: {{ selected_item.options|join('; ') }}
+  {% endif %}
+{% endfor %}
+

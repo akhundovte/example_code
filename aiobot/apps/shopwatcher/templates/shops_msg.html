@@ -1,0 +1,6 @@
+Список поддерживаемых магазинов:
+
+{% for shop in shops %}
+{{loop.index}}. <b>{{shop.label}}</b> - {{shop.hostname}}
+
+{% endfor %}

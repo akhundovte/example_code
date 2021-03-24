@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+    aiobot:
+        image: aiobot:latest
+        container_name: aiobot
+        user: 1002:1003
+        build: 
+            context: .
+            dockerfile: Dockerfile_Firefox
+        shm_size: '2gb'
+        command: ["python", "__main__.py"]
+        working_dir: /src
+        volumes:
+            - "${PATH_PROJECT}/aiobot:/src"
+            - "/var/run/postgresql/:/psql/"
+            - "${PATH_PROJECT}/logs/:/logs/"
+            - "${PATH_PROJECT}/files/:/files/"

@@ -1,0 +1,16 @@
+common:
+    debug: true
+
+postgres_db:
+    database: shopwatcher
+    user: 
+    password: 
+    host: 127.0.0.1 
+    port: 5432
+    minsize: 1
+    maxsize: 10
+    echo: false
+
+logs_dir: 'C:\\projects_py\\aiobot_proj\\logs'
+
+driver_firefox: 'C:\\projects_py\\_libs\selenium\\geckodriver-v0.28.0-win64\\geckodriver.exe'

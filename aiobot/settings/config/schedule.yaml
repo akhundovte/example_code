@@ -1,0 +1,33 @@
+parse_products_task:
+  type: 'periodic'
+  path: 'apps.shopwatcher.tasks.parse_products_task'
+  time:
+    hour: 19
+    minute: 38
+    second: 0
+    microsecond: 0
+
+send_notice_task:
+  type: 'periodic'
+  path: 'apps.shopwatcher.tasks.send_notice_task'
+  time:
+    hour: 19
+    minute: 39
+    second: 0
+    microsecond: 0
+
+everyday_msg_admins_task:
+  type: 'periodic'
+  path: 'apps.shopwatcher.tasks.everyday_msg_admins_task'
+  time:
+    hour: 21
+    minute: 10
+    second: 0
+    microsecond: 0
+
+# set_actual_cookies_task:
+#   type: 'every'
+#   path: 'apps.shopwatcher.tasks.set_actual_cookies_task'
+#   time:
+#     hour: 1
+#     #minute: 30
